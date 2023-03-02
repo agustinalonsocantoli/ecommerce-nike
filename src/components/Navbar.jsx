@@ -2,10 +2,19 @@ import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 import { HeartIcon } from '@heroicons/react/24/outline';
 import { ShoppingBagIcon } from '@heroicons/react/24/outline';
 import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import logo from '../assets/logo.png';
+import { setOpenCart } from '../feature/CartSlice'
 
 export const Navbar = () => {
+    const dispatch = useDispatch()
     const [ nav, setNav ] = useState(false);
+
+    const onCartToggle = () => {
+        dispatch(setOpenCart({
+            cartState: true,
+        }))
+    }
     
     const onNavScroll = () => {
         if(window.scrollY > 30) {
@@ -48,7 +57,9 @@ export const Navbar = () => {
                         </li>
 
                         <li className='grid items-center'>
-                            <button type='button' className='border-none outline-none active:scale-110 transition-all duration-300 relative'>
+                            <button type='button' onClick={onCartToggle}
+                            className='border-none outline-none active:scale-110 transition-all duration-300 relative'
+                            >
                                 <ShoppingBagIcon className={`icon-style ${nav && 'text-slate-900 transition-all duration-300'}`} />
 
                                 <div className={`absolute top-4 right-0 w-4 h-4 text-[0.65rem] leading-tight 
