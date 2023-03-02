@@ -8,9 +8,9 @@
 
 ## Tecnologías 🛠️
 
-- REACT
-- Tailwindcss
+- React
 - Redux
+- Tailwindcss
 
 ## Contribuyendo
 
