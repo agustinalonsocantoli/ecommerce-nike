@@ -5,11 +5,13 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 import { store } from '../src/app/store'
+import { Toaster } from 'react-hot-toast';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <Provider store={store}>
+      <Toaster position='top-center' reverseOrder={false}/>
       <App />
     </Provider>
   </React.StrictMode>

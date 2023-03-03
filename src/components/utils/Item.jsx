@@ -1,6 +1,6 @@
 import { StarIcon, ShoppingBagIcon } from '@heroicons/react/24/solid'
 import { useDispatch } from 'react-redux';
-import { setAddItemCart } from '../../feature/CartSlice';
+import { setAddItemCart, setCloseCart } from '../../feature/CartSlice';
 
 export const Item =  ({ id, title, text, img, color, shadow, price, rating, btn, ifExists }) => {
     const dispatch = useDispatch()
@@ -9,6 +9,12 @@ export const Item =  ({ id, title, text, img, color, shadow, price, rating, btn,
         const item = { id, title, text, img, color, shadow, price };
 
         dispatch(setAddItemCart(item));
+    }
+
+    const onCartToggle = () => {
+        dispatch(setCloseCart({
+            cartState: true,
+        }))
     }
 
     return(
@@ -28,8 +34,15 @@ export const Item =  ({ id, title, text, img, color, shadow, price, rating, btn,
                 </div>
 
                 <div className='flex items-center gap-3'>
-                    <button type='button' onClick={() => onAddToCart()} className='bg-white/90 blur-effect-theme button-theme p-0.5 shadow shadow-sky-200'><ShoppingBagIcon className='icon-style text-slate-900' /></button>
-                    <button type='button' className='bg-white/90 blur-effect-theme button-theme px-2 py-2 shadow shadow-sky-200 text-sm text-black'>{btn}</button>
+                    <button type='button' onClick={() => onAddToCart()} 
+                    className='bg-white/90 blur-effect-theme button-theme p-0.5 shadow shadow-sky-200'>
+                        <ShoppingBagIcon className='icon-style text-slate-900' />
+                    </button>
+
+                    <button type='button' onClick={() => {onAddToCart(); onCartToggle();}}
+                    className='bg-white/90 blur-effect-theme button-theme px-2 py-2 shadow shadow-sky-200 text-sm text-black'>
+                        {btn}
+                    </button>
                 </div>
             </div>
             <div className={`flex items-center ${ifExists ? 'absolute top-5 right-1' : 'justify-center'}`}>
