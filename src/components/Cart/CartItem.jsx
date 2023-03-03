@@ -27,6 +27,9 @@ export const CartItem = ({ item: { id, title, text, img, color, shadow, price, c
                     hover:scale-105 transition-all duration-75 ease-in-out grid items-center`}
                     >
                         <img src={img} alt={`img/${id}`} className="w-36 h-auto object-fill lg:w-28"/>
+                        <div className="absolute right-1 top-1 blur-effect-theme bg-white/80 text-black text-xs px-1 rounded">
+                            ${price}
+                        </div>
                     </div>
 
                     <div className="grid items-center gap-4">
